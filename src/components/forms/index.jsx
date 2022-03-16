@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Container,Content, Alermsg } from "./styles";
-//import api from '../../services/api';
-import axios from "axios";
+import api from '../services/api';
 //import { redirect } from "express/lib/response";
 //require("dotenv/config");
 
@@ -10,9 +9,9 @@ export default function Forms(){
     var url = process.env.REACT_APP_API_URL;
 
     const [nome, setNome] = useState('');
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [cpf, setcpf] = useState('');
+    const [sexo, setsexo] = useState('');
+    const [endereco, setendereco] = useState('');
 
     const[msg, setMsg] = useState();
 
@@ -20,13 +19,15 @@ export default function Forms(){
         e.preventDefault();
         const data = {
             nome_user:nome, 
-            email_user:email, 
-            senha_user:senha, 
-            username_user:username,
+            cpf_user:cpf,
+            sexo_user:sexo,
+            endereco_user:endereco
         } 
        
-        // const res = await api.post(url + '/user/register',data);
+        console.log(data);
+        const res = await api.post(url + '/api/salvar',data);
        
+        console.log(res);
 
         //     if(res.status === 200){
                 
@@ -48,20 +49,17 @@ export default function Forms(){
         var pad = 1;
     },[msg])
 
-    function redirectLogar(){
-        window.location.href ='/login';
 
-    }
 
     return (
         <Container>
             <Alermsg tlerro ={pad}>{msg}</Alermsg>
             <Content>
                
-                <h2>Sign Up</h2>
+                <h2>Adicionar Paciente</h2>
                 <form >
-                    <div className="field-1">
-                        <label><span>Name</span></label>
+                <div className="field-1">
+                        <label><span>Nome</span></label>
                         <input 
                         type="text" 
                         name='fistname' 
@@ -70,56 +68,57 @@ export default function Forms(){
                     
                     </div>
 
+                  
+
                     <div className="field">
-                        <label><span>Username</span></label>
+                        <label><span>CPF</span></label>
                         <input 
-                        type="text"
-                        name='username'
-                        value={username}
-                        onChange={e=>setUsername(e.target.value)} 
-                        required
-                        
+                        pattern="(\d{3}\.?\d{3}\.?\d{3}-?\d{2})|(\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2})"
+                        type="number" 
+                        name='cpf'
+                        value={cpf}
+                        onChange={e=>setcpf(e.target.value)}required
 
                         />
                     </div>
 
+                    
                     <div className="field">
-                        <label><span>Email</span></label>
-                        <input 
-                        type="email" 
-                        name='email'
-                        value={email}
-                        onChange={e=>setEmail(e.target.value)}required
+                        <label><span>Sexo</span></label>
+                        <select id="sexo" name="sexo" value={sexo} onChange={e=>setsexo(e.target.value)} required>
 
-                        />
+                            <option  value="default">Selecione</option>
+                            <option value="Masculino ">Masculino</option>
+                            <option value="Feminino">Feminino</option>
+                            
+                        </select>
                     </div>
 
+           
+
                     <div className="field">
-                        <label><span>Password</span></label>
+                        <label><span>Endereço</span></label>
                         <input 
-                        type="password" 
-                        name='password'
-                        value={senha}
-                        onChange={e=>setSenha(e.target.value)}
+                        type="locale" 
+                        name='locale'
+                        value={endereco}
+                        onChange={e=>setendereco(e.target.value)}
                         required
                         autoComplete="current-password"
 
                         />
                     </div>
-                
+
+
                     <input 
                     type="submit" 
                     value='Registrar' 
                     onClick={salvar}/>
+                
 
                 </form>
 
-               <label> Já tem cadastro ?  <input 
-                    className="Logeer"
-                    type="submit" 
-                    value='Logar' 
-                    onClick={redirectLogar}/></label>
-
+              
 
             </Content>
         </Container>

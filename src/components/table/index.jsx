@@ -4,8 +4,15 @@ import { Container } from "./styles.js";
 import { Table, Button } from 'react-bootstrap';
 
 export default function index() {
+
+
+    function hunderClick(){
+        window.location.href ='/adicionar';
+      }
+    
+
   return (
-  
+    <Container>
         <Table >
             <thead>
                 <tr>
@@ -52,5 +59,9 @@ export default function index() {
             </tbody>
         </Table>
     
+      <Button onClick={hunderClick} variant="primary">Adicionar</Button>
+    </Container>
+  
+  
   )
 }

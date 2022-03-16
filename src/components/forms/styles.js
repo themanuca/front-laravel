@@ -25,17 +25,17 @@ export const Content = styled.div`
     color: black;
     display: flex;
     flex-direction: column;
-   
+    align-items:center ;
 }
 >form label {
         font-weight: 500;
-    
+        display: block ;
     }
 >form label span {
     font-size: 1.1rem;
     margin-top: 2rem;
 }
->form input {
+>form input, select {
     
     background:#E5EAEE ;
     width: 300px;
