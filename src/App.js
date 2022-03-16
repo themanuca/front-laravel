@@ -4,7 +4,10 @@ import { Button } from 'react-bootstrap';
 
 function App() {
 
-  
+  function hunderClick(){
+    window.location.href ='/registro';
+  }
+
   return (
     <div className="App">
       <Tabela/>
