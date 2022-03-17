@@ -27,21 +27,21 @@ export default function Forms(){
         console.log(data);
         const res = await api.post(url + '/api/salvar',data);
        
-        console.log(res);
-
-        //     if(res.status === 200){
-                
-        //         window.location.href ='/login';
-
-        //     }else if (res.status === 299){
-
-        //         setMsg(res.data.msg)
-        //     }
-        //     else {
-        //         alert('ERRO NO SERVIDOR')
-        //     }
         
-        //     console.log(res.data);
+
+            if(res.status === 200){
+                
+                window.location.href ='/';
+
+            }else if (res.status === 299){
+
+                setMsg(res.data.msg)
+            }
+            else {
+                alert('ERRO NO SERVIDOR')
+            }
+        
+            console.log(res.data);
 
     }
     var pad = 0;
