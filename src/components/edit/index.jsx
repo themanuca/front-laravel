@@ -27,13 +27,13 @@ export default function Forms(){
         } 
        
         console.log(data);
-        const res = await api.post(url + '/api/salvar',data);
+        const res = await api.put(url + '/api/up/'+id,data);
        
         
-
+            
             if(res.status === 200){
-                
-                window.location.href ='/';
+                console.log('FOI!')
+                //window.location.href ='/';
 
             }else if (res.status === 299){
 
@@ -43,7 +43,7 @@ export default function Forms(){
                 alert('ERRO NO SERVIDOR')
             }
         
-            console.log(res.data);
+          //  console.log(res.data);
 
     }
     
@@ -51,7 +51,7 @@ export default function Forms(){
         var padding = 1;
         async function Dadospaciente(){
             var res = await api.get(url +'/api/editar/'+id);
-            console.log(res.data);
+           // console.log(res.data);
             setNome(res.data.name);
             setcpf(res.data.cpf);
             setendereco(res.data.endereco);

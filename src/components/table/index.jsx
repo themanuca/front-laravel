@@ -45,7 +45,6 @@ export default function Index() {
             {cardPost.map((item)=>{
                 return(
                   <tr key={item.id}>
-                      <td>h1</td>
                       <td>{item.name}</td>
                       <td>{item.cpf}</td>
                       <td>{item.sexo}</td>
